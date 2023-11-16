@@ -1,0 +1,22 @@
+version: '3.9'
+
+volumes:
+  postgres: {}
+
+services:
+  postgres:
+    build:
+      context: .
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=netflix
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=I_will_definitely_pass_this_test
+    ports:
+      - 5467:5432
+    logging:
+      driver: json-file
+      options:
+        max-file: '3'
+        max-size: 5m
