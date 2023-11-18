@@ -1,7 +1,6 @@
 import { pgClient } from "../pgClient.js";
 
 export async function getFilms(params) {
-  console.log(params);
   const sql = generateGetFilmsSql(params);
   return pgClient.query(sql);
 }
@@ -83,8 +82,6 @@ LEFT JOIN genre ON genre.genre_id = film_genres.genre_id`;
 
   if (watch_count_sort) sql += ` ORDER BY w.watch_count ${watch_count_sort}`;
   else sql += ` ORDER BY film.film_id ASC`;
-
-  console.log(sql);
 
   return sql;
 }
